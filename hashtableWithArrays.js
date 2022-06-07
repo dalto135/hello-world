@@ -1,4 +1,4 @@
-sha3_256 = require('js-sha3').sha3_256;
+// sha3_256 = require('js-sha3').sha3_256;
 
 class HashTable {
     constructor() {

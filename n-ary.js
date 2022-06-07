@@ -4,7 +4,6 @@ class Node {
     constructor(value, N) {
         this.value = value;
         this.adjacent = new Array(N)
-        // this.limit = limit;
     }
 }
 
@@ -35,7 +34,11 @@ function breadthFirstSearch(root) {
 }
 
 function insert(root, node) {
-    if (root == null || root.value == null) {
+    if (!root) {
+        
+    }
+    else if (!root.value) {
+        let newNode = new Node(node, root.adjacent.length);
         root = newNode;
     }
     else {
