@@ -50,6 +50,35 @@ function insert(root, node) {
             }
         }
         insert(root.adjacent[0], node);
+
+        // let queue = new Queue();
+        // queue.enqueue(root);
+        // console.log("queue");
+        // console.log(queue.isEmpty());
+
+        // while(!queue.isEmpty()) {
+        //     let nodeBranch = queue.dequeue();
+        //     console.log("node");
+        //     console.log(nodeBranch);
+        //     if (!nodeBranch) {
+        //         // console.log(node.value);
+        //         let newNode = new Node(node, root.adjacent.length);
+        //         nodeBranch = newNode;
+        //         console.log("nodeBranch");
+        //         console.log(nodeBranch);
+        //         return;
+        //     }
+        //     // node.adjacent.forEach(i => {
+        //     //     queue.enqueue(i);
+        //     //     console.log("queue");
+        //     //     console.log(queue);
+        //     // });
+        //     for (let i = 0; i < nodeBranch.adjacent.length; ++i) {
+        //         queue.enqueue(nodeBranch.adjacent[i]);
+        //         console.log("queue");
+        //         console.log(queue);
+        //     }
+        // }
     }
 }
 
