@@ -8,32 +8,20 @@ class Node {
     }
 }
 
-// class OandPGraph {
-//     constructor() {
-
-//     }
-// }
-
 function insert(root, value) {
-    let newNode = new Node(value, root.limit);
     if (root == null || root.value == null) {
-        root = newNode;
+        root = value;
     }
     else {
-        // if (root.adjacent.length == root.limit) {
-        //     console.log("Exceeded number of branches for root");
-        //     for (let i = 0; i < root.adjacent.length; ++i) {
-        //         // let branch = root.adjacent[i];
-        //         if (root.adjacent[i].adjacent.length < root.adjacent[i].limit) {
-        //             root.adjacent[i].adjacent.push(newNode);
-        //             i = root.adjacent.length;
-        //         }
-        //     }
-        // }
-        // else {
-        newNode.adjacent.push(root);
-        root.adjacent.push(newNode);
-        // }
+        if (value.adjacent) {
+            value.adjacent.push(root);
+            root.adjacent.push(value);
+        }
+        else {
+            let newNode = new Node(value);
+            newNode.adjacent.push(root);
+            root.adjacent.push(newNode);
+        }
     }
 }
 
@@ -69,21 +57,74 @@ function breadthFirstSearch(root) {
     }
 }
 
-let root = new Node(50);
-insert(root, 60)
+// let graph = {
+//     value: 10,
+//     visited: false,
+//     adjacent: [
+//         {
+//             value: 20,
+//             visited: false,
+//             adjacent: [
+//                 {
+//                     value: 50,
+//                     visited: false,
+//                     adjacent: [
+//
+//                     ]
+//                 },
+//                 {
+//                     value: 60,
+//                     visited: false,
+//                     adjacent: [
+// 
+//                     ]
+//                 }
+//             ]
+//         },
+//         {
+//             value: 30,
+//             visited: false,
+//             adjacent: [
+//                 {
+//                     value: 80,
+//                     visited: false,
+//                     adjacent: [
+// 
+//                     ]
+//                 },
+//                 {
+//                     value: 90,
+//                     visited: false,
+//                     adjacent: [
+// 
+//                     ]
+//                 }
+//             ]
+//         }
+//     ]
+// };
 
-console.log("graph");
-console.log(root);
+let rootGraph = new Node(10);
+let twenty = new Node(20);
+let thirty = new Node(30);
+let forty = new Node(40);
+let fifty = new Node(50);
+let sixty = new Node(60);
+let seventy = new Node(70);
+
+insert(rootGraph, twenty)
+insert(rootGraph, thirty);
+
+insert(twenty, forty);
+insert(twenty, fifty);
+
+insert(thirty, sixty)
+insert(thirty, seventy);
+
+insert(forty, 80);
+
+// console.log("breadth first search");
+// breadthFirstSearch(rootGraph);
 
 console.log("depth first search");
-depthFirstSearch(root);
-
-let root2 = new Node(50);
-insert(root2, 60)
-
-console.log("graph2");
-console.log(root2.adjacent);
-
-console.log("breadth first search");
-breadthFirstSearch(root2);
-
+depthFirstSearch(rootGraph);
