@@ -1,21 +1,21 @@
-export class Queue {
+export class Stack {
     constructor() {
         // this.elements = {};
         // this.head = 0;
         // this.tail = 0;
         this.elements = [];
     }
-    enqueue(element) {
+    push(element) {
         // this.elements[this.tail] = element;
         // this.tail++;
         this.elements.push(element);
     }
-    dequeue() {
+    pop() {
         // const item = this.elements[this.head];
         // delete this.elements[this.head];
         // this.head++;
         // return item;
-        return this.elements.shift();
+        return this.elements.pop();
     }
     peek() {
         // return this.elements[this.head];
@@ -33,3 +33,16 @@ export class Queue {
         return false;
     }
 }
+
+// let stack = new Stack();
+
+// console.log("push");
+// for (let i = 1; i <= 7; i++) {
+//     console.log(i);
+//     stack.push(i);
+// }
+
+// console.log("pop");
+// while (!stack.isEmpty()) {
+//     console.log(stack.pop());
+// }

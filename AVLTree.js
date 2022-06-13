@@ -28,10 +28,8 @@ function rightRotate(y) {
     y.left = T2;
 
     // Update heights
-    y.height = max(height(y.left),
-    height(y.right)) + 1;
-    x.height = max(height(x.left),
-    height(x.right)) + 1;
+    y.height = max(height(y.left), height(y.right)) + 1;
+    x.height = max(height(x.left), height(x.right)) + 1;
 
     // Return new root
     return x;
@@ -66,19 +64,23 @@ function getBalance(N) {
 
 function insert(node, key) {
     /* 1. Perform the normal BST insertion */
-    if (node == null) return new Node(key);
+    if (node == null) {
+        return new Node(key);
+    }
 
-    if (key < node.key)
-    node.left = insert(node.left, key);
-    else if (key > node.key)
-    node.right = insert(node.right, key);
+    if (key < node.key) {
+        node.left = insert(node.left, key);
+    }
+    else if (key > node.key) {
+        node.right = insert(node.right, key);
+    }
     // Duplicate keys not allowed
-    else return node;
+    else {
+        return node;
+    }
 
     /* 2. Update height of this ancestor node */
-    node.height =
-    1 + max(height(node.left),
-        height(node.right));
+    node.height = 1 + max(height(node.left), height(node.right));
 
     /* 3. Get the balance factor of this ancestor
     node to check whether this node became
@@ -87,23 +89,25 @@ function insert(node, key) {
 
     // If this node becomes unbalanced, then there
     // are 4 cases Left Left Case
-    if (balance > 1 && key < node.left.key)
-    return rightRotate(node);
+    if (balance > 1 && key < node.left.key) {
+        return rightRotate(node);
+    }
 
     // Right Right Case
-    if (balance < -1 && key > node.right.key)
-    return leftRotate(node);
+    if (balance < -1 && key > node.right.key) {
+        return leftRotate(node);
+    }
 
     // Left Right Case
     if (balance > 1 && key > node.left.key) {
-    node.left = leftRotate(node.left);
-    return rightRotate(node);
+        node.left = leftRotate(node.left);
+        return rightRotate(node);
     }
 
     // Right Left Case
     if (balance < -1 && key < node.right.key) {
-    node.right = rightRotate(node.right);
-    return leftRotate(node);
+        node.right = rightRotate(node.right);
+        return leftRotate(node);
     }
 
     /* return the (unchanged) node pointer */
@@ -113,7 +117,9 @@ function insert(node, key) {
 // A utility function to get
 // the height of the tree
 function height(node) {
-    if (node == null) return 0;
+    if (node == null) {
+        return 0;
+    }
 
     return node.height;
 }
@@ -132,8 +138,9 @@ function minValueNode(node) {
     let current = node;
 
     /* loop down to find the leftmost leaf */
-    while (current.left != null)
+    while (current.left != null) {
         current = current.left;
+    }
 
     return current;
 }
@@ -148,45 +155,47 @@ function deleteNode(tree, key) {
     }
 
     // STEP 1: PERFORM STANDARD BST DELETE
-    if (root == null)
+    if (root == null) {
         return root;
+    }
 
     // If the key to be deleted is smaller than
     // the root's key, then it lies in left subtree
-    if (key < root.key)
+    if (key < root.key) {
         root.left = deleteNode(root.left, key);
+    }
 
     // If the key to be deleted is greater than the
     // root's key, then it lies in right subtree
-    else if (key > root.key)
+    else if (key > root.key) {
         root.right = deleteNode(root.right, key);
+    }
 
     // if key is same as root's key, then this is the node
     // to be deleted
-    else
-    {
-
+    else {
         // node with only one child or no child
-        if ((root.left == null) || (root.right == null))
-        {
+        if ((root.left == null) || (root.right == null)) {
             let temp = null;
-            if (temp == root.left)
+            if (temp == root.left) {
                 temp = root.right;
-            else
+            }
+            else {
                 temp = root.left;
+            }
 
             // No child case
-            if (temp == null)
-            {
+            if (temp == null) {
                 temp = root;
                 root = null;
             }
-            else // One child case
-                root = temp; // Copy the contents of
-                            // the non-empty child
+            // One child case
+            else {
+                // Copy the contents of the non-empty child
+                root = temp;
+            }
         }
-        else
-        {
+        else {
 
             // node with two children: Get the inorder
             // successor (smallest in the right subtree)
@@ -201,8 +210,9 @@ function deleteNode(tree, key) {
     }
 
     // If the tree had only one node then return
-    if (root == null)
+    if (root == null) {
         return root;
+    }
 
     // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
     root.height = max(height(root.left), height(root.right)) + 1;
@@ -213,23 +223,23 @@ function deleteNode(tree, key) {
 
     // If this node becomes unbalanced, then there are 4 cases
     // Left Left Case
-    if (balance > 1 && getBalance(root.left) >= 0)
+    if (balance > 1 && getBalance(root.left) >= 0) {
         return rightRotate(root);
+    }
 
     // Left Right Case
-    if (balance > 1 && getBalance(root.left) < 0)
-    {
+    if (balance > 1 && getBalance(root.left) < 0) {
         root.left = leftRotate(root.left);
         return rightRotate(root);
     }
 
     // Right Right Case
-    if (balance < -1 && getBalance(root.right) <= 0)
+    if (balance < -1 && getBalance(root.right) <= 0) {
         return leftRotate(root);
+    }
 
     // Right Left Case
-    if (balance < -1 && getBalance(root.right) > 0)
-    {
+    if (balance < -1 && getBalance(root.right) > 0) {
         root.right = rightRotate(root.right);
         return leftRotate(root);
     }
@@ -323,19 +333,23 @@ tree.root = insert(tree.root, 25);
 console.log("tree.root")
 console.log(tree.root);
 
-console.log("in order");
-inOrder(tree);
+rightRotate(tree.root);
+console.log("right rotate");
+console.log(tree.root);
 
-console.log("pre order");
-preOrder(tree);
+// console.log("in order");
+// inOrder(tree);
 
-console.log("post order");
-postOrder(tree);
+// console.log("pre order");
+// preOrder(tree);
 
-console.log("breadth first search");
-breadthFirstSearch(tree);
+// console.log("post order");
+// postOrder(tree);
 
-deleteNode(tree, 25);
+// console.log("breadth first search");
+// breadthFirstSearch(tree);
 
-console.log("deleted 25 BFS");
-breadthFirstSearch(tree);
+// deleteNode(tree, 25);
+
+// console.log("deleted 25 BFS");
+// breadthFirstSearch(tree);
