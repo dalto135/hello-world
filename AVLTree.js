@@ -333,23 +333,23 @@ tree.root = insert(tree.root, 25);
 console.log("tree.root")
 console.log(tree.root);
 
-rightRotate(tree.root);
-console.log("right rotate");
-console.log(tree.root);
+// rightRotate(tree.root);
+// console.log("right rotate");
+// console.log(tree.root);
 
-// console.log("in order");
-// inOrder(tree);
+console.log("in order");
+inOrder(tree);
 
-// console.log("pre order");
-// preOrder(tree);
+console.log("pre order");
+preOrder(tree);
 
-// console.log("post order");
-// postOrder(tree);
+console.log("post order");
+postOrder(tree);
 
-// console.log("breadth first search");
-// breadthFirstSearch(tree);
+console.log("breadth first search");
+breadthFirstSearch(tree);
 
-// deleteNode(tree, 25);
+deleteNode(tree, 25);
 
-// console.log("deleted 25 BFS");
-// breadthFirstSearch(tree);
+console.log("deleted 25 BFS");
+breadthFirstSearch(tree);
